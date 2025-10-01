@@ -1,0 +1,36 @@
+import logging
+from aiogram import Bot, Dispatcher, executor, types
+
+API_TOKEN = "8269631267:AAF5uqkFK10QMpY3BXIFYaG0hENZ243Stwo"
+
+logging.basicConfig(level=logging.INFO)
+
+bot = Bot(token=API_TOKEN)
+dp = Dispatcher(bot)
+
+# Команда /start
+@dp.message_handler(commands=['start'])
+async def send_welcome(message: types.Message):
+    keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    button = types.KeyboardButton("Поделиться номером 📱", request_contact=True)
+    keyboard.add(button)
+    await message.answer(
+        "Привет! Пожалуйста, поделись своим номером телефона, обещаем мы не будем тебе звонить",
+        reply_markup=keyboard
+    )
+
+# Обработка контакта
+@dp.message_handler(content_types=['contact'])
+async def contact_handler(message: types.Message):
+    if message.contact:
+        phone = message.contact.phone_number
+        user_id = message.from_user.id
+        username = message.from_user.username
+
+        # Сохраняем данные (тут просто выводим в консоль)
+        print(f"Номер: {phone}, ID: {user_id}, username: {username}")
+
+        await message.answer("Спасибо! Номер сохранён ✅")
+
+if __name__ == '__main__':
+    executor.start_polling(dp, skip_updates=True)
