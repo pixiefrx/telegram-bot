@@ -95,7 +95,7 @@ def loan_menu():
     keyboard = [
         [types.KeyboardButton(text="2 руб")],
         [types.KeyboardButton(text="349 руб")],
-        [types.KeyboardButton(text="15 000 000 руб")],
+        [types.KeyboardButton(text="15000000 руб")],
         [types.KeyboardButton(text="⬅️ Назад")]
     ]
     return ReplyKeyboardMarkup(keyboard=keyboard, resize_keyboard=True)
@@ -180,7 +180,7 @@ async def loan_handler(message: types.Message):
     await message.answer("Выбери сумму микрозайма:", reply_markup=loan_menu())
 
 
-@dp.message(F.text.in_({"2 руб", "349 руб", "15 000 000 руб"}))
+@dp.message(F.text.in_({"2 руб", "349 руб", "15000000 руб"}))
 async def choose_amount(message: types.Message):
     amount = int(message.text.split()[0])
     pending_loans[message.from_user.id] = amount
