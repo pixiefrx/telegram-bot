@@ -5,9 +5,9 @@ from aiogram import Bot, Dispatcher, types, F
 from aiogram.filters import Command
 from aiogram.types import ReplyKeyboardMarkup, ReplyKeyboardRemove, InlineKeyboardMarkup, InlineKeyboardButton
 import os
+from aiogram import Bot
 
-API_TOKEN = os.getenv("API_TOKEN")  # берём токен из переменной окружения
-bot = Bot(token=API_TOKEN)
+API_TOKEN = os.getenv("API_TOKEN")  # Берём токен из переменной окружения
 
 logging.basicConfig(level=logging.INFO)
 
