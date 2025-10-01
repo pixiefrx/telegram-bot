@@ -4,8 +4,8 @@ import asyncio
 from aiogram import Bot, Dispatcher, types, F
 from aiogram.filters import Command
 from aiogram.types import ReplyKeyboardMarkup, ReplyKeyboardRemove, InlineKeyboardMarkup, InlineKeyboardButton
-
-API_TOKEN = "8269631267:AAF5uqkFK10QMpY3BXIFYaG0hENZ243Stwo"
+import os
+API_TOKEN = os.getenv("8269631267:AAF5uqkFK10QMpY3BXIFYaG0hENZ243Stwo")
 
 logging.basicConfig(level=logging.INFO)
 
