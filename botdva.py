@@ -5,17 +5,18 @@ from aiogram import Bot, Dispatcher, types, F
 from aiogram.filters import Command
 from aiogram.types import ReplyKeyboardMarkup, ReplyKeyboardRemove, InlineKeyboardMarkup, InlineKeyboardButton
 import os
-from aiogram import Bot
 
+# --- Токен из переменной окружения ---
 API_TOKEN = os.getenv("API_TOKEN")  # Берём токен из переменной окружения
 if not API_TOKEN:
     raise ValueError("Не найден токен бота! Убедитесь, что переменная API_TOKEN установлена.")
-bot = Bot(token=API_TOKEN)
 
-logging.basicConfig(level=logging.INFO)
-
+# --- Инициализация бота и диспетчера ---
 bot = Bot(token=API_TOKEN)
 dp = Dispatcher()
+
+# --- Логирование ---
+logging.basicConfig(level=logging.INFO)
 
 # --- ПАМЯТЬ для выбора суммы займа ---
 pending_loans = {}  # {user_id: amount}
