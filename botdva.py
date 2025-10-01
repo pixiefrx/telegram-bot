@@ -8,6 +8,9 @@ import os
 from aiogram import Bot
 
 API_TOKEN = os.getenv("API_TOKEN")  # Берём токен из переменной окружения
+if not API_TOKEN:
+    raise ValueError("Не найден токен бота! Убедитесь, что переменная API_TOKEN установлена.")
+bot = Bot(token=API_TOKEN)
 
 logging.basicConfig(level=logging.INFO)
 
